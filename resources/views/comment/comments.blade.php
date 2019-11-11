@@ -31,8 +31,7 @@
                     </tbody>
                 </table>
 {{--looking at pagination--}}
-                {{ $comments -> links () }}
-
+                {!! $comments->render() !!}
                         @else
                 <div class="notification is-info">
                     <p>
