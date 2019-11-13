@@ -7,10 +7,15 @@ use Illuminate\Http\Request;
 
 class CommentController extends Controller
 {
-    public function index()
-    {
-        $comments = Comment::all ();
-        return view ('comment.comments', compact ('comments'));
+//    specifying the amount of items on a page
+//    const COMMENTS_PER_PAGE = 5;
+
+    public function index () {
+//        $comments = Comment::paginate(5); // setting the pagination
+//        $comments = Comment::paginate(self::COMMENTS_PER_PAGE); // setting the pagination
+        $comments = Comment::all (); // old comment call. no pagination
+        return view ('comment.comments') -> with (['comments' => $comments]); // displaying the comments
+
     }
 
     public function create()
