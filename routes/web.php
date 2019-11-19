@@ -11,3 +11,5 @@ use Illuminate\Support\Facades\Auth;
 //Route::get('/main', 'AuthController@show');
 //Route::get('login/logout', 'AuthController@destroy');
 Route::get('/','CommentController@index');
+Route::get('/comment/{comment}/like/', 'LikesController@likePl');
+Route::get('/comment/{comment}/dislike/', 'DislikesController@dislikePl');
