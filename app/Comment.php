@@ -6,6 +6,12 @@ use Illuminate\Database\Eloquent\Model;
 
 class Comment extends Model
 {
+    protected $fillable = [
+        'user',
+        'created_at',
+        'comments'
+    ];
+
     public function likePlus()
     {
         $this -> likes += 1;

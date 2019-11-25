@@ -1,37 +1,43 @@
 @extends('setup')
+@section('page_title')
+    Guestbook
+@endsection
+@section('page_heading')
+    <h2>Guestbook Comments</h2>
+@endsection
 @section('content')
-    <div class="container main-table">
-        <div class="box">
-            <h1 class="title">Guest book Comments</h1>
-            @if (count ($comments) > 0)
+{{--    <a class="button" href="/comment/create/"><ion-icon name="create"></ion-icon></a>--}}
+@if (count ($comments) > 0)
                 <table class="table is-striped is-hoverable">
                     <thead>
                     <tr>
-                        <th>User</th>
-                        <th>Comment</th>
-                        <th>Date</th>
-                        <th>Likes</th>
-                        <th>Dislikes</th>
+                        <th><h4>User</h4></th>
+                        <th><h4>Comment</h4></th>
+                        <th><h4>Date</h4></th>
+                        <th><h4>Likes</h4></th>
+                        <th><h4>Dislikes</h4></th>
                     </tr>
                     </thead>
                     <tr>
                     @foreach ($comments as $c)
-{{--declaring the comments--}}
                         <tr>
-                            <td>{{ $c -> user }}</td>
-                            <td>{{ $c -> comments }}</td>
-                            <td>{{ $c -> created_at -> format ('D jS F') }}</td>
-                            <td>{{ $c -> likes }}</td>
-                            <td>{{ $c -> dislikes }}</td>
+                            <td><p>{{ $c -> user }}</p></td>
+                            <td><p>{{ $c -> comments }}</p></td>
+                            <td><p>{{ $c -> created_at -> format ('D jS F') }}</p></td>
+                            <td><p>{{ $c -> likes }}</p></td>
+                            <td><p>{{ $c -> dislikes }}</p></td>
                         </tr>
 
                     <tr class="icon heart">
+                        <td><a class="button" href="/comment/{{ $c -> id }}/"><ion-icon name="eye"></ion-icon></a></td>
+                        <td><a class="button" href="/comment/{{ $c -> id }}/edit/"><ion-icon name="create"></ion-icon></a></td>
+                        <td><a class="button" href="/comment/{{ $c -> id }}/delete/"><ion-icon name="trash"></ion-icon></a></td>
                         <td><a class="button" href="/comment/{{ $c -> id }}/like/"><ion-icon name="md-heart"></ion-icon></a></td>
-                        <td><a class="button" href="/comment/{{ $c -> id }}/dislike/"><ion-icon name="md-heart-empty"></ion-icon></a></td>
+                        <td><a class="button" href="/comment/{{ $c -> id }}/dislike"><ion-icon name="md-heart-empty"></ion-icon></a></td>
                     </tr>
                         @endforeach
                 </table>
-                {{ $comments -> links () }} {{-- Setting pagination--}}
+                {{ $comments -> links () }}
                         @else
                 <div class="notification is-info">
                     <p>
@@ -39,6 +45,6 @@
                     </p>
                 </div>
             @endif
-        </div>
-    </div>
+
+{{--{{ dd($comments) }}--}}
 @endsection
