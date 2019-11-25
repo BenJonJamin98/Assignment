@@ -40,7 +40,7 @@ class CommentController extends Controller
 // Posting the updated comment
     public function update(Request $request, Comment $comment)
     {
-        $comment -> update (['comment' => $request -> comment]);
+        $comment -> update (['comments' => $request -> comment]);
         return redirect () -> action ('CommentController@index');
     }
 // Delete comment
